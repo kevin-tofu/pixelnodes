@@ -1,0 +1,18 @@
+[tool.poetry]
+name = "pixelnodes"
+version = "0.1.0"
+description = ""
+authors = ["kohei <koheitech001@gmail.com>"]
+readme = "README.md"
+packages = [{include = "pixelnodes"}]
+
+[tool.poetry.dependencies]
+python = ">=3.10, <3.11"
+numpy = "^1.24.2"
+scikit-image = "^0.20.0"
+scikit-learn = "^1.2.2"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
