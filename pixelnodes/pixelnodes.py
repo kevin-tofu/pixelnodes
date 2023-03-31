@@ -9,6 +9,7 @@ class Cluster(NamedTuple):
     labels: list[int]
     centres: list[list[float]]
     members_size: list[int]
+    weight_pixelvalue: float
 
 
 def get_pixelset(image: np.ndarray):
@@ -41,7 +42,12 @@ def clustering(
     
     members_size = [ len(ms.labels_ == k) for k in range(ms.cluster_centers_.shape[0])]
 
-    cluster = Cluster(ms.labels_, ms.cluster_centers_.tolist(), members_size)
+    cluster = Cluster(
+        ms.labels_,
+        ms.cluster_centers_.tolist(),
+        members_size,
+        weight_pixelvalue
+    )
     # print(cluster.members_size)
     return cluster
 
@@ -62,7 +68,9 @@ def create_image(
         cluster_center = cluster_centers[k]
         pixelset_clustered[my_members] = np.expand_dims(cluster_center, axis=0)
 
-    pixelset_clustered = pixelset_clustered[:, 0:3].reshape(image_shape).astype(np.uint8)
+    pixelset_clustered = pixelset_clustered[:, 0:3].reshape(image_shape)
+    pixelset_clustered = (pixelset_clustered / cluster.weight_pixelvalue).astype(np.uint8)
+
     return pixelset_clustered
 
 
