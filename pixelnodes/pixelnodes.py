@@ -89,7 +89,7 @@ if __name__ == '__main__':
     cluster = clustering(image, 0.01, 2000, weight_pixelvalue=0.2)
 
     image_superpixel = create_superpixel_image(cluster)
-    image_nodes = create_superpixel_image(cluster)
+    image_nodes = create_nodes_image(cluster)
     print(pixelset_clustered.shape, pixelset_clustered.dtype)
 
     skimage.io.imsave('./lena-superpixel.png', image_superpixel)
