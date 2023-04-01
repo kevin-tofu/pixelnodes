@@ -60,7 +60,7 @@ def clustering(
     return cluster
 
 
-def create_image(cluster: Cluster):
+def create_superpixel_image(cluster: Cluster):
     labels = cluster.labels
     cluster_centers = np.array(cluster.centres)
     labels_unique = np.unique(labels)
@@ -78,10 +78,9 @@ def create_image(cluster: Cluster):
     return pixelset_clustered
 
 
-def create_image(
-    cluster: Cluster,
-    image_shape: tuple
-):
+def create_nodes_image(cluster: Cluster):
+    pass
+
 
 if __name__ == '__main__':
 
@@ -89,8 +88,10 @@ if __name__ == '__main__':
     
     cluster = clustering(image, 0.01, 2000, weight_pixelvalue=0.2)
 
-    pixelset_clustered = create_image(cluster)
+    image_superpixel = create_superpixel_image(cluster)
+    image_nodes = create_superpixel_image(cluster)
     print(pixelset_clustered.shape, pixelset_clustered.dtype)
 
-    skimage.io.imsave('./lena-out.png', pixelset_clustered)
+    skimage.io.imsave('./lena-superpixel.png', image_superpixel)
+    # skimage.io.imsave('./lena-nodes.png', image_nodes)
 

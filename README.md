@@ -3,27 +3,25 @@
 You can check the graph using superpixel or node representation.
 
 ## Installation
+
 ```bash
 
-poetry add 
+poetry add git+https://github.com/kevin-tofu/pixelnodes.git
 
 ```
 
 ## Example
+
 ```python
 
+import pixelnodes
 image = skimage.io.imread('./lena.png')
     
-pixelset = get_pixelset(image).reshape((-1, 5))
-cluster = clustering(pixelset, 0.01, 2000, weight_pixelvalue=0.2)
+cluster = pixelnodes.clustering(image, 0.01, 2000, weight_pixelvalue=0.2)
 
+image_superpixel = pixelnodes.create_superpixel_image(cluster)
+image_nodes = pixelnodes.create_superpixel_image(cluster)
 
-pixelset_clustered = create_image(
-    cluster,
-    pixelset.shape,
-    image.shape
-)
-
-skimage.io.imsave('./lena-out.png', pixelset_clustered)
+skimage.io.imsave('./lena-superpixel.png', image_superpixel)
 
 ```
