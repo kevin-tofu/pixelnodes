@@ -15,6 +15,9 @@ poetry add git+https://github.com/kevin-tofu/pixelnodes.git
 
 ## Example
 
+![lena-superpixel](./result/lena-superpixel.png "lena-superpixel")
+![lena-nodes](./result/lena-nodes.png "lena-nodes")
+
 ```python
 
 import pixelnodes
