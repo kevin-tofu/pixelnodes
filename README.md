@@ -38,3 +38,17 @@ skimage.io.imsave('./lena-superpixel.png', image_superpixel)
 skimage.io.imsave('./lena-nodes.png', image_nodes)
 
 ```
+
+### The definition of node format is below
+
+```python
+
+class Nodes(NamedTuple):
+    labels: list[int]
+    centres: list[list[float]]
+    members_size: list[int]
+    weight_pixelvalue: float
+    image_shape: tuple
+    pixelset_shape: tuple
+
+```
